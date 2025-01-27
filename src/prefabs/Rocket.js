@@ -10,9 +10,22 @@ class Rocket extends Phaser.GameObjects.Sprite {
       this.sfxShot = scene.sound.add('sfx-shot')
     }
 
-    update() {
+    update(scene) {
+         // particle effect trail
+         if (Math.random() < 0.5) {
+            const trail = scene.add.particles(0, 0, 'particle', {
+                lifespan: 3000,
+                speed: { min: 100, max: 200 },
+                scale: { start: 1, end: 0 },
+                blendMode: 'COLOR_DODGE',
+                angle: { min: 80, max: 100 },
+                // gravityY: 300
+            });
+            trail.explode(1, this.x, this.y);
+        }
+
         // left/right movement
-        if(!this.isFiring) {
+        if(!this.isFiring || this.isFiring) {
             if(keyLEFT.isDown && this.x >= borderUISize + this.width) {
                 this.x -= this.moveSpeed;
             } else if(keyRIGHT.isDown && this.x <= game.config.width - borderUISize - this.width) {
@@ -32,6 +45,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
         if(this.y <= borderUISize * 3 + borderPadding) {
             this.isFiring = false;
             this.y = game.config.height - borderUISize - borderPadding;
+            scene.timer -= 5*60;
         }
     }
 

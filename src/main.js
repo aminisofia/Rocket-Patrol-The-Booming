@@ -1,3 +1,19 @@
+// Sofia Aminifard
+// Rocket Patrol+
+// Hours took: 
+
+// My Mods:
+// Create a new enemy Spaceship type (w/ new artwork) that's smaller, moves faster, and is worth more points (5)
+// Display the time remaining (in seconds) on the screen (3)
+// Implement a new timing/scoring mechanism that adds time to the clock for successful hits and subtracts time for misses (5)
+// Use Phaser's particle emitter to create a particle explosion when the rocket hits the spaceship (5)
+// Allow the player to control the Rocket after it's fired (1)
+// Create a new title screen (e.g., new artwork, typography, layout) (3)
+
+// Sources:
+// Particles: perplexity.ai
+
+
 let config = {
     type: Phaser.AUTO,
     width: 640,
