@@ -8,7 +8,8 @@ class Menu extends Phaser.Scene {
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('miniSpaceship', './assets/miniSpaceship.png');
         this.load.image('starfield', './assets/starfield.png');
-        this.load.image('particle', './assets/particle.png')
+        this.load.image('particle', './assets/particle.png');
+        this.load.image('title', './assets/title.png');
 
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {
@@ -43,36 +44,42 @@ class Menu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Rocket Patrol!', menuConfig).setOrigin(0.5)
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#f8d2ff';
-        menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        // title image
+        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.add.image(0,0,'title').setOrigin(0,0);
+        
+
+        // this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Rocket Patrol!', menuConfig).setOrigin(0.5)
+        // this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
+        // menuConfig.backgroundColor = '#f8d2ff';
+        // menuConfig.color = '#000';
+        // this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
     
     // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
     }
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-          // easy mode
-          game.settings = {
-            spaceshipSpeed: 3,
-            miniSpaceshipSpeed: 10,
-            gameTimer: 60000    
-          }
-          this.sound.play('sfx-select')
-          this.scene.start('playScene')    
+      this.starfield.tilePositionX -= 15;
+      if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
+        // easy mode
+        game.settings = {
+          spaceshipSpeed: 3,
+          miniSpaceshipSpeed: 10,
+          gameTimer: 60000    
         }
-        if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
-          // hard mode
-          game.settings = {
-            spaceshipSpeed: 4,
-            miniSpaceshipSpeed: 15,
-            gameTimer: 45000    
-          }
-          this.sound.play('sfx-select')
-          this.scene.start('playScene')    
-        }
+        this.sound.play('sfx-select')
+        this.scene.start('playScene')    
       }
+      if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
+        // hard mode
+        game.settings = {
+          spaceshipSpeed: 4,
+          miniSpaceshipSpeed: 15,
+          gameTimer: 45000    
+        }
+        this.sound.play('sfx-select')
+        this.scene.start('playScene')    
+      }
+    }
 }

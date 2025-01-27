@@ -12,17 +12,20 @@ class Rocket extends Phaser.GameObjects.Sprite {
 
     update(scene) {
          // particle effect trail
-         if (Math.random() < 0.5) {
-            const trail = scene.add.particles(0, 0, 'particle', {
-                lifespan: 3000,
-                speed: { min: 100, max: 200 },
-                scale: { start: 1, end: 0 },
-                blendMode: 'COLOR_DODGE',
-                angle: { min: 80, max: 100 },
-                // gravityY: 300
-            });
-            trail.explode(1, this.x, this.y);
-        }
+         if (this.isFiring) {
+            if (Math.random() < 0.5) {
+                const trail = scene.add.particles(0, 0, 'particle', {
+                    lifespan: 3000,
+                    speed: { min: 100, max: 200 },
+                    scale: { start: 1, end: 0 },
+                    blendMode: 'COLOR_DODGE',
+                    angle: { min: 80, max: 100 },
+                    // gravityY: 300
+                });
+                trail.explode(1, this.x, this.y);
+            }
+         }
+        
 
         // left/right movement
         if(!this.isFiring || this.isFiring) {
@@ -38,11 +41,11 @@ class Rocket extends Phaser.GameObjects.Sprite {
             this.sfxShot.play();
         }
         // if fired, move up
-        if(this.isFiring && this.y >= borderUISize * 3 + borderPadding) {
+        if(this.isFiring && this.y >= borderUISize * 1) {
             this.y -= this.moveSpeed;
         }
         // reset on miss
-        if(this.y <= borderUISize * 3 + borderPadding) {
+        if(this.y <= borderUISize * 1) {
             this.isFiring = false;
             this.y = game.config.height - borderUISize - borderPadding;
             scene.timer -= 5*60;
