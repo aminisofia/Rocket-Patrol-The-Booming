@@ -9,10 +9,10 @@ class Play extends Phaser.Scene {
         // white UI background
         // this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0xFFFFFF).setOrigin(0, 0);
         // pink borders
-        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xffdaf4).setOrigin(0, 0)
+        // this.add.rectangle(0, 0, game.config.width, borderUISize, 0xffdaf4).setOrigin(0, 0)
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xffdaf4).setOrigin(0, 0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 0xffdaf4).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xffdaf4).setOrigin(0, 0);
+        // this.add.rectangle(0, 0, borderUISize, game.config.height, 0xffdaf4).setOrigin(0, 0);
+        // this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xffdaf4).setOrigin(0, 0);
         
 
         // add rocket (p1)
@@ -42,13 +42,13 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig)
+        this.scoreLeft = this.add.text(borderUISize + borderPadding - 30, borderUISize + borderPadding*2 - 40, this.p1Score, scoreConfig)
 
         // GAME OVER flag
         this.gameOver = false;
         
         this.timer = 60*60;
-        this.timeLeft = this.add.text(borderUISize + borderPadding + 110, borderUISize + borderPadding*2, "-", scoreConfig)
+        this.timeLeft = this.add.text(borderUISize + borderPadding + 80, borderUISize + borderPadding*2 - 40, "-", scoreConfig)
         
         scoreConfig.fixedWidth = 0
         
