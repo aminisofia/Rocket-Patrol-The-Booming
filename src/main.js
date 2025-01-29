@@ -14,12 +14,25 @@
 // Sources:
 // Particles: perplexity.ai
 
+let config;
 
-let config = {
-    type: Phaser.AUTO,
-    width: 640,
-    height: 480,
-    scene: [ Menu, Play ]
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('fullscreen') === "true") {
+    config = {
+        type: Phaser.AUTO,
+        scale: {
+            mode: Phaser.Scale.RESIZE,
+            autoCenter: Phaser.Scale.CENTER_BOTH
+        },
+        scene: [ Menu, Play ]
+    }
+} else {
+    config = {
+        type: Phaser.AUTO,
+        width: 640,
+        height: 480,
+        scene: [ Menu, Play ]
+    }
 }
 
 let game = new Phaser.Game(config);

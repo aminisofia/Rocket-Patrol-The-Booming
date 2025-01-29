@@ -4,25 +4,26 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+
+        this.starfield = this.add.tileSprite(0, 0, this.sys.game.canvas.width, this.sys.game.canvas.height, 'starfield').setOrigin(0, 0);
 
         // white UI background
-        // this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0xFFFFFF).setOrigin(0, 0);
+        // this.add.rectangle(0, borderUISize + borderPadding, this.sys.game.canvas.width, borderUISize * 2, 0xFFFFFF).setOrigin(0, 0);
         // pink borders
-        // this.add.rectangle(0, 0, game.config.width, borderUISize, 0xffdaf4).setOrigin(0, 0)
-        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xffdaf4).setOrigin(0, 0);
-        // this.add.rectangle(0, 0, borderUISize, game.config.height, 0xffdaf4).setOrigin(0, 0);
-        // this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xffdaf4).setOrigin(0, 0);
+        // this.add.rectangle(0, 0, this.sys.game.canvas.width, borderUISize, 0xffdaf4).setOrigin(0, 0)
+        this.add.rectangle(0, this.sys.game.canvas.height - borderUISize, this.sys.game.canvas.width, borderUISize, 0xffdaf4).setOrigin(0, 0);
+        // this.add.rectangle(0, 0, borderUISize, this.sys.game.canvas.height, 0xffdaf4).setOrigin(0, 0);
+        // this.add.rectangle(this.sys.game.canvas.width - borderUISize, 0, borderUISize, this.sys.game.canvas.height, 0xffdaf4).setOrigin(0, 0);
         
 
         // add rocket (p1)
-        this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
+        this.p1Rocket = new Rocket(this, this.sys.game.canvas.width/2, this.sys.game.canvas.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
         // add spaceships (x3)
-        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 20).setOrigin(0, 0)
-        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0)
-        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 20).setOrigin(0,0)
+        this.ship01 = new Spaceship(this, this.sys.game.canvas.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 20).setOrigin(0, 0)
+        this.ship02 = new Spaceship(this, this.sys.game.canvas.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0)
+        this.ship03 = new Spaceship(this, this.sys.game.canvas.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 20).setOrigin(0,0)
         // add miniSpaceship
-        this.ship04 = new miniSpaceship(this, game.config.width + borderUISize*11, borderUISize*10, 'miniSpaceship', 0, 40).setOrigin(0, 0)
+        this.ship04 = new miniSpaceship(this, this.sys.game.canvas.width + borderUISize*11, borderUISize*10, 'miniSpaceship', 0, 40).setOrigin(0, 0)
         // define keys
         keyFIRE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyRESET = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -60,8 +61,8 @@ class Play extends Phaser.Scene {
         }
         this.timeLeft.text = Math.floor(this.timer/60);
         if (this.timer == 0) {
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5)
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu').setOrigin(0.5)
+            this.add.text(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'GAME OVER').setOrigin(0.5)
+            this.add.text(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2 + 64, 'Press (R) to Restart or ← for Menu').setOrigin(0.5)
             this.gameOver = true;
         }
         // check key input for restart
@@ -144,5 +145,5 @@ class Play extends Phaser.Scene {
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;    
         this.sound.play('sfx-explosion')
-      }
+    }
 }

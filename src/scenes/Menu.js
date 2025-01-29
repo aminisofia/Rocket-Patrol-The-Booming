@@ -45,17 +45,16 @@ class Menu extends Phaser.Scene {
             fixedWidth: 0
         }
         // title image
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
-        this.add.image(0,0,'title').setOrigin(0,0);
+        this.starfield = this.add.tileSprite(0, 0, this.sys.game.canvas.width, this.sys.game.canvas.height, 'starfield').setOrigin(0, 0);
+        this.add.image(this.sys.game.canvas.width/2,this.sys.game.canvas.height/2,'title').setOrigin(0.5,0.5);
         
-
         // this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Rocket Patrol!', menuConfig).setOrigin(0.5)
         // this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
         // menuConfig.backgroundColor = '#f8d2ff';
         // menuConfig.color = '#000';
         // this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
     
-    // define keys
+        // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
     }
