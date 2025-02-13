@@ -25,38 +25,55 @@ class Menu extends Phaser.Scene {
       }
 
     create() {
-        // place tile sprite
-        // animation configuration
-        this.anims.create({
-            key: 'explode',
-            frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
-            frameRate: 30
-        })
-        let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#fbe4b4',
-            color: '#843605',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 0
-        }
-        // title image
-        this.starfield = this.add.tileSprite(0, 0, this.sys.game.canvas.width, this.sys.game.canvas.height, 'starfield').setOrigin(0, 0);
-        this.add.image(this.sys.game.canvas.width/2,this.sys.game.canvas.height/2,'title').setOrigin(0.5,0.5);
-        
-        // this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Rocket Patrol!', menuConfig).setOrigin(0.5)
-        // this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        // menuConfig.backgroundColor = '#f8d2ff';
-        // menuConfig.color = '#000';
-        // this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
-    
-        // define keys
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
+
+      const canvas = document.querySelector('canvas');
+      const context = canvas.getContext('2d');
+      window.addEventListener('resize', resizeCanvas, false);
+
+      const scene = this;
+
+      function resizeCanvas() {        
+
+        const scaleW = window.innerWidth / scene.sys.game.config.width;
+        const scaleH = window.innerHeight / scene.sys.game.config.height;
+
+        canvas.style.scale = Math.min(scaleW, scaleH);
+      }
+      
+      resizeCanvas();
+
+      // place tile sprite
+      // animation configuration
+      this.anims.create({
+          key: 'explode',
+          frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
+          frameRate: 30
+      })
+      let menuConfig = {
+          fontFamily: 'Courier',
+          fontSize: '28px',
+          backgroundColor: '#fbe4b4',
+          color: '#843605',
+          align: 'right',
+          padding: {
+              top: 5,
+              bottom: 5,
+          },
+          fixedWidth: 0
+      }
+      // title image
+      this.starfield = this.add.tileSprite(0, 0, this.sys.game.canvas.width, this.sys.game.canvas.height, 'starfield').setOrigin(0, 0);
+      this.add.image(this.sys.game.canvas.width/2,this.sys.game.canvas.height/2,'title').setOrigin(0.5,0.5);
+      
+      // this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Rocket Patrol!', menuConfig).setOrigin(0.5)
+      // this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
+      // menuConfig.backgroundColor = '#f8d2ff';
+      // menuConfig.color = '#000';
+      // this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+  
+      // define keys
+      keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
+      keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
     }
     update() {
       this.starfield.tilePositionX -= 15;

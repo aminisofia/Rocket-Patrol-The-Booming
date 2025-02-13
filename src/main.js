@@ -17,7 +17,7 @@
 let config;
 
 const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.get('fullscreen') === "true") {
+if (false && urlParams.get('fullscreen') === "true") {
     config = {
         type: Phaser.AUTO,
         scale: {
@@ -29,8 +29,8 @@ if (urlParams.get('fullscreen') === "true") {
 } else {
     config = {
         type: Phaser.AUTO,
-        width: 640,
-        height: 480,
+        width: 798, // 640,
+        height: 448, // 480,
         scene: [ Menu, Play ]
     }
 }
