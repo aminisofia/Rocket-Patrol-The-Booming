@@ -27,7 +27,6 @@ class Menu extends Phaser.Scene {
     create() {
 
       const canvas = document.querySelector('canvas');
-      const context = canvas.getContext('2d');
       window.addEventListener('resize', resizeCanvas, false);
 
       const scene = this;
@@ -75,6 +74,7 @@ class Menu extends Phaser.Scene {
       keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
       keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
     }
+    
     update() {
       this.starfield.tilePositionX -= 15;
       if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {

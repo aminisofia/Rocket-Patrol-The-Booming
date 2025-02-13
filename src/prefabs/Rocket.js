@@ -19,7 +19,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
                     lifespan: 3000,
                     speed: { min: 100, max: 200 },
                     scale: { start: 1, end: 0 },
-                    blendMode: 'COLOR_DODGE',
+                    blendMode: 'HARD_LIGHT',
                     angle: { min: 80, max: 100 },
                     // gravityY: 300
                 });
